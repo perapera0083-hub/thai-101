@@ -81,12 +81,13 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs([
 ])
 
 # 4. Fonction d'affichage d'une carte de lettre
-def afficher_lettre(thai, nom, son, astuce):
+def afficher_voyelle(notation, nom, son, exemple, astuce):
     st.markdown(f"""
     <div class="letter-card">
-        <div class="thai-char">{thai}</div>
+        <div class="thai-char">{notation}</div>
         <div class="letter-name">{nom}</div>
         <div class="letter-sound">Son : {son}</div>
+        <div class="letter-sound">Exemple : {exemple}</div>
         <div class="letter-tip">💡 {astuce}</div>
     </div>
     """, unsafe_allow_html=True)
@@ -176,8 +177,63 @@ with tab1:
     st.success("✅ Tu as maintenant vu les 42 consonnes ! Direction l'onglet Voyelles pour commencer à former des syllabes.")
 
 with tab2:
-    st.title("🔊 Les Voyelles")
-    st.write("Contenu à venir — une fois les premières consonnes bien assimilées.")
+    st.title("🔊 Les Voyelles Thaïes")
+    st.write(
+        "Contrairement aux consonnes, les voyelles peuvent se placer avant, après, "
+        "au-dessus, en dessous, ou même tout autour de la consonne. "
+        "Le tiret (-) dans chaque symbole représente la place de la consonne. "
+        "On utilise ก (Ko Kai) comme exemple dans toutes les cartes."
+    )
+    st.divider()
+
+    groupes_voyelles = [
+        ("Groupe 1 — Voyelles courtes simples", "Position fixe autour de la consonne", [
+            ("-ะ", "Sara A", '"a" court (comme dans "patte")', "กะ", "Se place juste après la consonne."),
+            ("-ิ", "Sara I", '"i" court (comme dans "ici")', "กิ", "Petit trait au-dessus de la consonne."),
+            ("-ึ", "Sara Ue", '"eu" court, bouche étirée', "กึ", "Au-dessus, ressemble à -ิ mais avec deux pics."),
+            ("-ุ", "Sara U", '"ou" court (comme dans "coup")', "กุ", "Petite boucle sous la consonne."),
+        ]),
+        ("Groupe 2 — Voyelles longues simples", "Versions allongées des précédentes", [
+            ("-า", "Sara Aa", '"a" long (comme dans "pâte")', "กา (= corbeau !)", "Trait vertical après la consonne."),
+            ("-ี", "Sara Ii", '"i" long (comme dans "midi")', "กี", "Comme -ิ mais avec une petite queue en plus."),
+            ("-ือ", "Sara Uea", '"eu" long, bien étiré', "กือ", "Combine -ื et อ ensemble."),
+            ("-ู", "Sara Uu", '"ou" long (comme dans "loup")', "กู", "Comme -ุ mais la boucle descend plus bas."),
+        ]),
+        ("Groupe 3 — Voyelles qui entourent la consonne", "Avant + après la consonne", [
+            ("เ-ะ", "Sara E (court)", '"é" court', "เกะ", "Trait avant la consonne, ะ après."),
+            ("เ-", "Sara E (long)", '"é" long (comme "été")', "เก", "Juste devant la consonne, seule."),
+            ("แ-ะ", "Sara Ae (court)", '"è" court', "แกะ (= mouton !)", "Deux traits obliques devant."),
+            ("แ-", "Sara Ae (long)", '"è" long (comme "père")', "แก", "Comme au-dessus, sans le ะ final."),
+            ("โ-ะ", "Sara O (court)", '"o" court', "โกะ", "Trait vertical devant, rond après."),
+            ("โ-", "Sara O (long)", '"o" long (comme "rose")', "โก", "Trait vertical devant, seul."),
+            ("เ-าะ", "Sara O (ouvert court)", '"o" ouvert court (comme "botte")', "เกาะ (= île !)", "Combinaison เ + าะ."),
+            ("-อ", "Sara Aw (long)", '"o" ouvert long (comme "or")', "กอ", "Après la consonne, ressemble à อ."),
+            ("เ-อะ", "Sara Oe (court)", '"eu" ouvert, court', "เกอะ", "Rare — combinaison เ + อะ."),
+            ("เ-อ", "Sara Oe (long)", '"eu" ouvert long (comme "peur")', "เกอ", "Combinaison เ + อ."),
+        ]),
+        ("Groupe 4 — Diphtongues", "Voyelles composées de deux sons", [
+            ("เ-ีย", "Sara Ia", '"ia" (comme dans "Provencia")', "เกีย", "Combine เ, -ี et ย."),
+            ("เ-ือ", "Sara Uea", '"euua" glissé', "เกือ", "Combine เ, -ื et อ."),
+            ("-ัว", "Sara Ua", '"oua" (comme dans "ouate")', "กัว", "Petit crochet au-dessus + อ après."),
+        ]),
+        ("Groupe 5 — Voyelles spéciales", "À mémoriser telles quelles", [
+            ("-ำ", "Sara Am", '"am"', "กำ (= faire, tenir !)", "Combine -ั et ม en un seul symbole."),
+            ("ใ-", "Sara Ai (type 1)", '"aï" (comme dans "ail")', "ใจ (= cœur !)", "Se place avant. N'apparaît que dans ~20 mots fixes."),
+            ("ไ-", "Sara Ai (type 2)", '"aï" (comme dans "ail")', "ไก่ (= poulet !)", "Se place avant. Bien plus fréquent que ใ-."),
+            ("เ-า", "Sara Ao", '"ao" (comme dans "Mao")', "เกา (= gratter !)", "Combine เ et า autour de la consonne."),
+        ]),
+    ]
+
+    for titre, sous_titre, voyelles in groupes_voyelles:
+        st.subheader(titre)
+        st.caption(sous_titre)
+        col1, col2 = st.columns(2)
+        for i, (notation, nom, son, exemple, astuce) in enumerate(voyelles):
+            with (col1 if i % 2 == 0 else col2):
+                afficher_voyelle(notation, nom, son, exemple, astuce)
+        st.divider()
+
+    st.success("✅ Tu connais maintenant toutes les voyelles principales ! Direction l'onglet Tons pour la dernière brique avant de lire couramment.")
 
 with tab3:
     st.title("🎵 Les Tons")
