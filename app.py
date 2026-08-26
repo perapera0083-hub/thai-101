@@ -151,7 +151,7 @@ with tab0:
         st.divider()
 
     # Structure : (titre du groupe, sous-titre, liste de (thai, nom, son, astuce))
-    groupes = [
+        groupes = [
         ("Groupe 1 — Les incontournables", "Sons coupés", [
             ("ก", "Ko Kai", '"k" (comme dans kayak)', "Ressemble à une petite poule qui picore."),
             ("ต", "To Tao", '"t" (comme dans tortue)', "Ressemble à ด mais avec une antenne différente."),
