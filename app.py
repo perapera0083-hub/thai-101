@@ -114,7 +114,7 @@ with tab1:
         afficher_lettre("บ", "Bo Baimai", "\"b\" (comme dans bébé)", "Une bosse simple, facile à repérer.")
 
     st.divider()
-        st.divider()
+    
     st.subheader("Groupe 2 — Les sons qui durent")
     st.caption("Contrairement au groupe 1 (sons coupés), ces consonnes ont des sons qu'on peut prolonger.")
 
