@@ -95,41 +95,85 @@ def afficher_lettre(thai, nom, son, astuce):
 with tab1:
     st.title("🔤 Les Consonnes Thaïes")
     st.write(
-        "On commence par un premier groupe de consonnes très fréquentes, "
-        "choisies pour leur simplicité visuelle. Pas besoin de retenir leur "
-        "classe tonale pour l'instant — on se concentre uniquement sur la forme et le son."
+        "On progresse par groupes de sons, en commençant par les plus fréquents. "
+        "Pas besoin de retenir leur classe tonale pour l'instant."
     )
     st.divider()
 
-    st.subheader("Groupe 1 — Les incontournables")
+    # Structure : (titre du groupe, sous-titre, liste de (thai, nom, son, astuce))
+    groupes = [
+        ("Groupe 1 — Les incontournables", "Sons coupés", [
+            ("ก", "Ko Kai", '"k" (comme dans kayak)', "Ressemble à une petite poule qui picore."),
+            ("ต", "To Tao", '"t" (comme dans tortue)', "Ressemble à ด mais avec une antenne différente."),
+            ("ด", "Do Dek", '"d" (comme dans dodo)', "Un rond avec une petite queue vers le haut."),
+            ("บ", "Bo Baimai", '"b" (comme dans bébé)', "Une bosse simple, facile à repérer."),
+        ]),
+        ("Groupe 2 — Les sons qui durent", "Sons continus", [
+            ("ม", "Mo Ma", '"m" (comme dans maman)', "Un rond avec une petite boucle sur le côté."),
+            ("ล", "Lo Ling", '"l" (comme dans lune)', "Ressemble à un petit hameçon qui remonte."),
+            ("น", "No Nu", '"n" (comme dans nature)', "Une vague qui se termine par une boucle en bas."),
+            ("ว", "Wo Waen", '"w" / "ou" (comme dans wagon)', "Un rond presque parfait."),
+        ]),
+        ("Groupe 3 — Sons distincts fréquents", "À apprendre séparément", [
+            ("ง", "Ngo Ngu", '"ng" (comme dans parking)', "Un rond avec une grande boucle qui pend en dessous."),
+            ("ย", "Yo Yak", '"y" (comme dans yaourt)', "Une boucle avec une longue queue vers le bas."),
+            ("ร", "Ro Ruea", '"r" roulé (à l\'espagnole)', "Ressemble à un petit crochet pointu."),
+            ("ห", "Ho Hip", '"h" (comme dans hôtel)', "Une forme arrondie avec un pic sur le côté."),
+        ]),
+        ("Groupe 4 — La famille \"P\"", "Nuances p / ph / f", [
+            ("ป", "Po Pla", '"p" sec, non-aspiré', "Un pic pointu avec un petit crochet au sommet."),
+            ("ผ", "Pho Phueng", '"ph" aspiré (souffle d\'air)', "Ressemble à ป mais avec une boucle en plus."),
+            ("พ", "Pho Phan", '"ph" aspiré (souffle d\'air)', "Une grande boucle ouverte sur la gauche."),
+            ("ฟ", "Fo Fan", '"f" (comme dans fleur)', "Ressemble à ฝ, avec une petite antenne au sommet."),
+        ]),
+        ("Groupe 5 — La famille \"Kh / Th\"", "Sons aspirés fréquents", [
+            ("ค", "Kho Khwai", '"kh" aspiré (comme dans loch)', "Une forme arrondie avec une queue basse."),
+            ("ข", "Kho Khai", '"kh" aspiré', "Ressemble à ค mais plus anguleux."),
+            ("ท", "Tho Thahan", '"th" aspiré (pas comme "the" anglais)', "Une boucle avec une longue queue horizontale."),
+            ("ถ", "Tho Thung", '"th" aspiré', "Une forme simple avec un petit chapeau."),
+        ]),
+        ("Groupe 6 — La famille \"Ch / S\"", "Sifflantes et chuintantes", [
+            ("จ", "Cho Chan", '"tch" (comme dans tchèque)', "Une boîte avec une petite queue qui dépasse."),
+            ("ช", "Cho Chang", '"tch" aspiré', "Ressemble à ข avec une forme plus arrondie."),
+            ("ซ", "So So", '"s" (comme dans soleil)', "Une double boucle qui ondule."),
+            ("ส", "So Suea", '"s" (le plus courant des \"s\")', "Une forme en zigzag avec une queue."),
+        ]),
+    ]
 
-    col1, col2 = st.columns(2)
+    for titre, sous_titre, lettres in groupes:
+        st.subheader(titre)
+        st.caption(sous_titre)
+        col1, col2 = st.columns(2)
+        for i, (thai, nom, son, astuce) in enumerate(lettres):
+            with (col1 if i % 2 == 0 else col2):
+                afficher_lettre(thai, nom, son, astuce)
+        st.divider()
 
-    with col1:
-        afficher_lettre("ก", "Ko Kai", "\"k\" (comme dans kayak)", "Ressemble à une petite poule qui picore.")
-        afficher_lettre("ด", "Do Dek", "\"d\" (comme dans dodo)", "Un rond avec une petite queue vers le haut.")
+    # Groupe bonus : lettres rares, sons déjà connus
+    st.subheader("Groupe Bonus — Lettres plus rares")
+    st.caption("Tu les croiseras occasionnellement, mais elles partagent un son déjà appris ci-dessus. Pas besoin de les mémoriser en priorité.")
 
-    with col2:
-        afficher_lettre("ต", "To Tao", "\"t\" (comme dans tortue)", "Ressemble à ด mais avec une antenne différente.")
-        afficher_lettre("บ", "Bo Baimai", "\"b\" (comme dans bébé)", "Une bosse simple, facile à repérer.")
+    rares = [
+        ("ฆ", "kh (comme ค)"), ("ฌ", "tch (comme ช)"), ("ญ", "y (comme ย)"),
+        ("ฎ", "d (comme ด)"), ("ฏ", "t (comme ต)"), ("ฐ", "th (comme ถ)"),
+        ("ฑ", "th (comme ท)"), ("ฒ", "th (comme ท)"), ("ณ", "n (comme น)"),
+        ("ธ", "th (comme ท)"), ("ฝ", "f (comme ฟ)"), ("ภ", "ph (comme พ)"),
+        ("ศ", "s (comme ส)"), ("ษ", "s (comme ส)"), ("ฬ", "l (comme ล)"),
+        ("อ", "muet / support de voyelle"), ("ฮ", "h (comme ห)"),
+    ]
+
+    cols = st.columns(4)
+    for i, (thai, note) in enumerate(rares):
+        with cols[i % 4]:
+            st.markdown(f"""
+            <div style="text-align:center; padding:10px; background-color:#1A1D24; border-radius:8px; margin-bottom:10px;">
+                <div style="font-size:2rem;">{thai}</div>
+                <div style="font-size:0.8rem; color:#9AA0A6;">{note}</div>
+            </div>
+            """, unsafe_allow_html=True)
 
     st.divider()
-    
-    st.subheader("Groupe 2 — Les sons qui durent")
-    st.caption("Contrairement au groupe 1 (sons coupés), ces consonnes ont des sons qu'on peut prolonger.")
-
-    col1, col2 = st.columns(2)
-
-    with col1:
-        afficher_lettre("ม", "Mo Ma", "\"m\" (comme dans maman)", "Un rond avec une petite boucle sur le côté, comme une tête ronde.")
-        afficher_lettre("ล", "Lo Ling", "\"l\" (comme dans lune)", "Ressemble à un petit hameçon qui remonte.")
-
-    with col2:
-        afficher_lettre("น", "No Nu", "\"n\" (comme dans nature)", "Une vague qui se termine par une petite boucle en bas.")
-        afficher_lettre("ว", "Wo Waen", "\"w\" / \"ou\" (comme dans wagon)", "Un rond presque parfait, facile à repérer.")
-
-    st.divider()
-    st.info("D'autres groupes de consonnes arrivent bientôt dans cet onglet !")
+    st.success("✅ Tu as maintenant vu les 42 consonnes ! Direction l'onglet Voyelles pour commencer à former des syllabes.")
 
 with tab2:
     st.title("🔊 Les Voyelles")
