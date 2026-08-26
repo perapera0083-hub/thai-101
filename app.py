@@ -143,12 +143,12 @@ with tab0:
     st.info("💪 สู้ๆ ! (Su su ! — Courage, tiens bon !) Chaque groupe de lettres que tu maîtrises te rapproche de ta première vraie lecture en thaï.")
     
     with tab1:
-    st.title("🔤 Les Consonnes Thaïes")
-    st.write(
+        st.title("🔤 Les Consonnes Thaïes")
+        st.write(
         "On progresse par groupes de sons, en commençant par les plus fréquents. "
         "Pas besoin de retenir leur classe tonale pour l'instant."
     )
-    st.divider()
+        st.divider()
 
     # Structure : (titre du groupe, sous-titre, liste de (thai, nom, son, astuce))
     groupes = [
