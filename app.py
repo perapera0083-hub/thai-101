@@ -139,8 +139,8 @@ with tab0:
         </div>
         """, unsafe_allow_html=True)
 
-    st.divider()
-    st.info("💪 สู้ๆ ! (Su su ! — Courage, tiens bon !) Chaque groupe de lettres que tu maîtrises te rapproche de ta première vraie lecture en thaï.")
+        st.divider()
+        st.info("💪 สู้ๆ ! (Su su ! — Courage, tiens bon !) Chaque groupe de lettres que tu maîtrises te rapproche de ta première vraie lecture en thaï.")
     
     with tab1:
         st.title("🔤 Les Consonnes Thaïes")
