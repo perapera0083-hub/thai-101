@@ -72,7 +72,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # 3. Navigation par onglets
-tab1, tab2, tab3, tab4, tab5 = st.tabs([
+tab0, tab1, tab2, tab3, tab4, tab5 = st.tabs([
+    "🏠 Accueil",
     "🔤 Consonnes",
     "🔊 Voyelles",
     "🎵 Tons",
@@ -103,7 +104,45 @@ def afficher_voyelle(notation, nom, son, exemple, astuce):
     """, unsafe_allow_html=True)
 
 # 5. Onglet Consonnes
-with tab1:
+with tab0:
+    st.title("🇹🇭 Bienvenue sur ton parcours de lecture Thaïe")
+    st.write(
+        "Ce site est ton compagnon d'apprentissage pour enfin déchiffrer le thaï, "
+        "étape par étape, sans te noyer dans toutes les règles en même temps."
+    )
+    st.divider()
+
+    st.subheader("📍 Pourquoi cet ordre de progression ?")
+    st.write(
+        "Beaucoup de méthodes mélangent tout dès le début (lettres + classes tonales + tons), "
+        "ce qui rend l'apprentissage plus lourd que nécessaire. Ici, on avance par briques : "
+        "d'abord savoir déchiffrer visuellement, puis seulement ensuite ajouter la couche des tons, "
+        "une fois que la lecture pure est devenue naturelle."
+    )
+    st.divider()
+
+    st.subheader("🗺️ Feuille de route")
+
+    etapes = [
+        ("🔤", "Consonnes", "Les 42 consonnes actives, groupées par famille de son plutôt que par ordre alphabétique."),
+        ("🔊", "Voyelles", "Les positions et sons des voyelles, qui peuvent entourer la consonne de toutes les façons."),
+        ("🎵", "Tons", "Les règles de ton, une fois que tu sais déjà lire des syllabes sans les tons."),
+        ("📖", "Lecture guidée", "Des mots et phrases simples pour mettre en pratique tout ce que tu as appris."),
+        ("🧩", "Exercices", "De quoi t'auto-tester et vérifier ce qui est bien acquis."),
+    ]
+
+    for emoji, titre, desc in etapes:
+        st.markdown(f"""
+        <div class="letter-card" style="border-left: 4px solid #E63946;">
+            <div style="font-size:1.3rem; font-weight:600; color:#FFFFFF;">{emoji} {titre}</div>
+            <div style="color:#B0B0B0; font-size:0.9rem; margin-top:4px;">{desc}</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    st.divider()
+    st.info("💪 สู้ๆ ! (Su su ! — Courage, tiens bon !) Chaque groupe de lettres que tu maîtrises te rapproche de ta première vraie lecture en thaï.")
+    
+    with tab1:
     st.title("🔤 Les Consonnes Thaïes")
     st.write(
         "On progresse par groupes de sons, en commençant par les plus fréquents. "
