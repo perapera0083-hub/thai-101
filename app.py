@@ -81,6 +81,16 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs([
 ])
 
 # 4. Fonction d'affichage d'une carte de lettre
+def afficher_lettre(thai, nom, son, astuce):
+    st.markdown(f"""
+    <div class="letter-card">
+        <div class="thai-char">{thai}</div>
+        <div class="letter-name">{nom}</div>
+        <div class="letter-sound">Son : {son}</div>
+        <div class="letter-tip">💡 {astuce}</div>
+    </div>
+    """, unsafe_allow_html=True)
+
 def afficher_voyelle(notation, nom, son, exemple, astuce):
     st.markdown(f"""
     <div class="letter-card">
