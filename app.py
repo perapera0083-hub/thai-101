@@ -81,7 +81,7 @@ tab0, tab1, tab2, tab3, tab4, tab5 = st.tabs([
     "🧩 Exercices"
 ])
 
-# 4. Fonction d'affichage d'une carte de lettre
+# 4. Fonctions d'affichage d'une carte de lettre / voyelle
 def afficher_lettre(thai, nom, son, astuce):
     st.markdown(f"""
     <div class="letter-card">
@@ -103,7 +103,7 @@ def afficher_voyelle(notation, nom, son, exemple, astuce):
     </div>
     """, unsafe_allow_html=True)
 
-# 5. Onglet Consonnes
+# 5. Onglet Accueil
 with tab0:
     st.title("🇹🇭 Bienvenue sur ton parcours de lecture Thaïe")
     st.write(
@@ -139,19 +139,20 @@ with tab0:
         </div>
         """, unsafe_allow_html=True)
 
-        st.divider()
-        st.info("💪 สู้ๆ ! (Su su ! — Courage, tiens bon !) Chaque groupe de lettres que tu maîtrises te rapproche de ta première vraie lecture en thaï.")
-    
-    with tab1:
-        st.title("🔤 Les Consonnes Thaïes")
-        st.write(
+    st.divider()
+    st.info("💪 สู้ๆ ! (Su su ! — Courage, tiens bon !) Chaque groupe de lettres que tu maîtrises te rapproche de ta première vraie lecture en thaï.")
+
+# 6. Onglet Consonnes
+with tab1:
+    st.title("🔤 Les Consonnes Thaïes")
+    st.write(
         "On progresse par groupes de sons, en commençant par les plus fréquents. "
         "Pas besoin de retenir leur classe tonale pour l'instant."
     )
-        st.divider()
+    st.divider()
 
     # Structure : (titre du groupe, sous-titre, liste de (thai, nom, son, astuce))
-        groupes = [
+    groupes = [
         ("Groupe 1 — Les incontournables", "Sons coupés", [
             ("ก", "Ko Kai", '"k" (comme dans kayak)', "Ressemble à une petite poule qui picore."),
             ("ต", "To Tao", '"t" (comme dans tortue)', "Ressemble à ด mais avec une antenne différente."),
@@ -225,6 +226,7 @@ with tab0:
     st.divider()
     st.success("✅ Tu as maintenant vu les 42 consonnes ! Direction l'onglet Voyelles pour commencer à former des syllabes.")
 
+# 7. Onglet Voyelles
 with tab2:
     st.title("🔊 Les Voyelles Thaïes")
     st.write(
@@ -284,6 +286,7 @@ with tab2:
 
     st.success("✅ Tu connais maintenant toutes les voyelles principales ! Direction l'onglet Tons pour la dernière brique avant de lire couramment.")
 
+# 8. Autres onglets (à venir)
 with tab3:
     st.title("🎵 Les Tons")
     st.write("Contenu à venir.")
