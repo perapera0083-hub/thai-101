@@ -114,6 +114,21 @@ with tab1:
         afficher_lettre("บ", "Bo Baimai", "\"b\" (comme dans bébé)", "Une bosse simple, facile à repérer.")
 
     st.divider()
+        st.divider()
+    st.subheader("Groupe 2 — Les sons qui durent")
+    st.caption("Contrairement au groupe 1 (sons coupés), ces consonnes ont des sons qu'on peut prolonger.")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        afficher_lettre("ม", "Mo Ma", "\"m\" (comme dans maman)", "Un rond avec une petite boucle sur le côté, comme une tête ronde.")
+        afficher_lettre("ล", "Lo Ling", "\"l\" (comme dans lune)", "Ressemble à un petit hameçon qui remonte.")
+
+    with col2:
+        afficher_lettre("น", "No Nu", "\"n\" (comme dans nature)", "Une vague qui se termine par une petite boucle en bas.")
+        afficher_lettre("ว", "Wo Waen", "\"w\" / \"ou\" (comme dans wagon)", "Un rond presque parfait, facile à repérer.")
+
+    st.divider()
     st.info("D'autres groupes de consonnes arrivent bientôt dans cet onglet !")
 
 with tab2:
